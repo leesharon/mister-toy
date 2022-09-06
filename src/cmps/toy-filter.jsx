@@ -1,60 +1,37 @@
 import { useEffect, useState } from 'react'
+import { useForm } from '../hooks/useForm'
 import { useFormRegister } from '../hooks/useFormRegister'
 import { useFormRegisterBase } from '../hooks/useFormRegisterBase'
 
 export const ToyFilter = ({ onChangeFilter }) => {
 
-    const [filterBy, setFilterBy] = useState({
+    const [toy, handleChange, setToy] = useForm({
         name: '',
-        minPrice: '',
-        maxPrice: '',
+        inStock: true,
+        label: '',
+        sortBy: ''
     })
 
-    const handleChange = ({ target }) => {
-        // const val = target.value
-        // this.setState({ search: val }, () => {
-        //     this.props.onSetFilterBy(this.state.search)
-        // })
-
-        // const field = target.name
-        // const value = target.type === 'number' ? +target.value : target.value
-        // this.setState((prevState) => ({
-        //     filterBy: {
-        //         ...prevState.filterBy,
-        //         [field]: value
-        //     }
-        // }), () => {
-        //     this.props.onSetFilter(this.state.filterBy)
-        // })
-    }
+    const inStockValue = toy.inStock ? 'true' : 'false'
 
     return (
-        <form onSubmit={onChangeFilter} className="toy-filter">
-            <label htmlFor="search">Search: </label>
-            <input
-                // ref={this.inputRef}
-                type="search"
-                placeholder="Enter bug name here"
-                id="search"
-                name="search"
-                value={filterBy.name}
-                className="input-search"
-                onChange={handleChange}
-            />
-            {/* <label htmlFor="severity">Severity</label>
-                <select name="severity" id="severity">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select> */}
-            <button className="btn btn-search">Go!</button>
-        </form>
+        <section className='toy-edit'>
+            <form onSubmit={onChangeFilter}>
+                <label htmlFor="name">Name</label>
+                <input value={toy.name} onChange={handleChange} type="text" name="name" id="name" />
+
+                <label htmlFor="price">Price</label>
+                <input value={toy.price} onChange={handleChange} type="number" name="price" id="price" />
+
+                <label htmlFor="inStock">In Stock?</label>
+                <select value={inStockValue} onChange={handleChange} name="inStock" id="inStock">
+                    <option disabled value="">Choose option</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+
+                <button>Search</button>
+            </form>
+        </section>
     )
-}
+}   

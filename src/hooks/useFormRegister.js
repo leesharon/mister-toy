@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useEffectUpdate } from "./useEffectUpdate"
 
 export const useFormRegister = (initialState, callBack) => {
@@ -36,13 +36,9 @@ export const useFormRegister = (initialState, callBack) => {
             default:
                 break
         }
-        console.log('handleChange ~ field', field)
-        console.log('handleChange ~ value', value)
-
         setFields(prevFields => ({ ...prevFields, [field]: value }))
-
         setTimeout(() => {
-            console.log('useFormRegister ~ fields', fields)
+            console.log('fields: ', fields)
 
         }, 1000);
     }
@@ -57,7 +53,7 @@ export const useFormRegister = (initialState, callBack) => {
         return `${(valueTime.getHours() + '').padStart(2, '0')}:${(valueTime.getMinutes() + '').padStart(2, '0')}`
     }
 
-    console.log('fields: ', fields)
+
     const register = (field, type = '', value) => { // value only used when type === 'radio'
         const inputProp = {
             onChange: handleChange,
@@ -76,5 +72,7 @@ export const useFormRegister = (initialState, callBack) => {
         }
         return inputProp
     }
+
     return [register, setFields, fields]
+
 }
