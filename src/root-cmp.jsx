@@ -5,6 +5,7 @@ import './assets/css/global.css'
 import { ToyApp } from "./views/toy-app"
 import { About } from "./views/about"
 import { ToyDetails } from "./views/toy-details"
+import { ToyEdit } from "./views/toy-edit"
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
           <Route path='' element={<ToyApp />} />
           <Route path='about' element={<About />} />
           <Route path='toy/:id' element={<ToyDetails />} />
+          <Route path='toy/edit/:id' element={<ToyEdit />} />
+          <Route path='toy/edit' element={<ToyEdit />} />
         </Routes>
       </main>
       <footer className="main-footer">

@@ -44,6 +44,7 @@ function remove(toyId) {
 }
 
 function save(toy) {
+    console.log('save ~ toy', toy)
     if (toy._id) {
         return storageService.put(STORAGE_KEY, toy)
     } else {
@@ -65,7 +66,7 @@ function _createToy() {
     return {
         "_id": utilService.makeId(),
         "name": utilService.getRandomName(),
-        "price": '$' + utilService.getRandomIntInclusive(10, 100) + '.99',
+        "price": utilService.getRandomIntInclusive(10, 100),
         "labels": ["Doll", "Battery Powered", "Baby"],
         "createdAt": Date.now(),
         "inStock": utilService.getRandomIntInclusive(0, 1) ? true : false,

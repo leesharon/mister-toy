@@ -4,18 +4,14 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useForm } from '../hooks/useForm'
 import { toyService } from '../services/toy.service'
 
-export const ToyEdit = (props) => {
+export const ToyEdit = () => {
 
     const params = useParams()
     const navigate = useNavigate()
 
-    // const [toy, setToy] = useState({
-    //     model: '',
-    //     type: ''
-    // })xw
     const [toy, handleChange, setToy] = useForm({
-        model: '',
-        type: ''
+        name: '',
+        price: '',
     })
 
     const inputRef = useRef()
@@ -33,36 +29,30 @@ export const ToyEdit = (props) => {
             })
     }, [])
 
-
-    // const handleChange = ({ target }) => {
-    //     const field = target.name
-    //     const value = target.type === 'number' ? (+target.value || '') : target.value
-    //     setToy(prevToy => ({ ...prevToy, [field]: value }))
-    // }
-
-
     const onSaveToy = (ev) => {
         ev.preventDefault()
-        toyService.save({ ...toy }).then(() => {
-            navigate('/')
-        })
+        toyService.save({ ...toy })
+            .then(() => {
+                navigate('/')
+            })
     }
 
-
+    const inStockValue = toy.inStock ? 'true' : 'false'
     return (
         <section className='toy-edit'>
             <h1>{toy._id ? 'Edit' : 'Add'} Toy</h1>
             <form onSubmit={onSaveToy}>
-                <label htmlFor="model">Model</label>
-                <input ref={inputRef} value={toy.model} onChange={handleChange} type="text" name="model" id="model" />
+                <label htmlFor="name">Name</label>
+                <input ref={inputRef} value={toy.name} onChange={handleChange} type="text" name="name" id="name" />
 
-                <label htmlFor="type">Type</label>
-                <select value={toy.type} onChange={handleChange} name="type" id="type">
-                    <option disabled value="">Choose a type</option>
-                    <option value="Cooking">Cooking</option>
-                    <option value="Cleaning">Cleaning</option>
-                    <option value="Pleasure">Pleasure</option>
-                    <option value="Office">Office</option>
+                <label htmlFor="price">Price</label>
+                <input value={toy.price} onChange={handleChange} type="number" name="price" id="price" />
+
+                <label htmlFor="inStock">In Stock?</label>
+                <select value={inStockValue} onChange={handleChange} name="inStock" id="inStock">
+                    <option disabled value="">Choose option</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
                 </select>
 
                 <button>Save</button>
