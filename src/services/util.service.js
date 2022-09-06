@@ -2,6 +2,7 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
+    getRandomName
 }
 
 function makeId(length = 6) {
@@ -13,6 +14,11 @@ function makeId(length = 6) {
     }
 
     return txt
+}
+
+function getRandomName() {
+    const names = ['Tarazan', 'Taz', 'RoboTrick', 'Barbi', 'Dinosaur Rex', 'Simba', 'Bambi']
+    return names[getRandomIntInclusive(0, names.length - 1)]
 }
 
 function makeLorem(size = 100) {

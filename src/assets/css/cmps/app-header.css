@@ -1,9 +1,15 @@
 .app-header {
-    background-color: #e91e63;
+    background-color: var(--clr3);
     color: whitesmoke;
+    font-size: 1.2em;
 }
 
-.app-header > section {
+.app-header .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.app-header>section {
     display: flex;
     align-items: center;
 }

@@ -13,7 +13,8 @@ export const AppHeader = () => {
                     <p>Balance: {loggedInUser.balance}</p>
                 </section> */}
                 <nav>
-                    <NavLink to='/' >Home</NavLink>
+                    <NavLink to='/home' >Home</NavLink>
+                    <NavLink to='/' >Toys</NavLink>
                     <NavLink to='/about'>About</NavLink>
                 </nav>
             </section>

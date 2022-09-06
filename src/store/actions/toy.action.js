@@ -3,6 +3,7 @@ import { toyService } from "../../services/toy.service"
 export function loadToys() {
     return (dispatch, getState) => {
         const { filterBy } = getState().toyModule
+        dispatch({ type: 'SET_LOADING', isLoading: true })
 
         toyService.query(filterBy)
             .then(toys => {
@@ -10,6 +11,9 @@ export function loadToys() {
             })
             .catch(err => {
                 console.log('err:', err)
+            })
+            .finally(() => {
+                dispatch({ type: 'SET_LOADING', isLoading: false })
             })
     }
 }

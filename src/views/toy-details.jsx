@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { ToyReview } from '../cmps/toy-review'
 import { toyService } from '../services/toy.service'
 
 export const ToyDetails = (props) => {
@@ -13,44 +14,39 @@ export const ToyDetails = (props) => {
         loadToy()
     }, [params.id])
 
-
-
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (prevparams.id !== params.id) {
-    //         loadToy()
-    //     }
-    // }
-
-
     const loadToy = () => {
         const toyId = params.id
-        toyService.getById(toyId).then(toy => {
-            setToy(toy)
-        })
+        toyService.getById(toyId)
+            .then(toy => {
+                setToy(toy)
+            })
     }
 
     const onBack = () => {
         navigate('/')
     }
 
-
-    console.log('render');
-
     if (!toy) return <div>Loading...</div>
+    const inStockTxt = toy.inStock ? 'In Stock' : 'Out of Stock'
+    const inStockStyle = toy.inStock ? 'green' : 'red'
     return (
         <div className='toy-details'>
             <section>
-                <h3>Model: {toy.model}</h3>
+                <h3>Name: {toy.name}</h3>
             </section>
             <section>
-                <h3>Type: {toy.type}</h3>
+                <h3>Price: {toy.price}</h3>
             </section>
             <section>
-                <h3>Battery Status: {toy.batteryStatus}</h3>
+                <h3 className={inStockStyle}>{inStockTxt}</h3>
             </section>
             <img src={`https://robohash.org/${toy._id}`} alt="" />
+            <section className='reviews'>
+                <h2>What others think of this toy?</h2>
+                {toy.reviews.map(review => <ToyReview review={review} key={toy._id} />)}
+            </section>
             <button onClick={onBack}>Back</button>
-            <Link to='/toy/r1' >Next Toy</Link>
+            {/* <Link to='/toy/r1' >Next Toy</Link> */}
         </div>
     )
 }

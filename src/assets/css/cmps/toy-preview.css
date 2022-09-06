@@ -1,7 +1,7 @@
 .toy-preview {
     display: flex;
     flex-direction: column;
-    background-color: #e91e630a;
+    background-color: var(--clr2);
     text-align: center;
     box-shadow: 3px 4px 15px #00000026;
     border-radius: 5px;
@@ -29,17 +29,24 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    background-color: #000000d1;
+    background-color: var(--clr1);
 }
 
-.actions > * {
+.actions>* {
     font-size: 1rem;
     padding: 0;
     background: none;
     border: none;
-    color: whitesmoke;
 }
 
-.actions > *:hover {
+.actions>*:hover {
     text-decoration: underline;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
 }

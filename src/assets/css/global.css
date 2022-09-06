@@ -1,4 +1,5 @@
 /* Basics */
+@import "basics/normalize";
 @import "basics/base";
 @import "basics/layout";
 
@@ -11,6 +12,8 @@
 /* Components */
 @import "cmps/toy-list";
 @import "cmps/toy-preview";
+@import "views/toy-details";
+@import "cmps/toy-review";
 @import "cmps/toy-filter";
 @import "cmps/app-header";
 @import "cmps/nice-button";
@@ -29,9 +32,6 @@
     border: none;
     background-color: inherit;
 }
-
-
-
 
 .fancy-box {
     background-color: gold;

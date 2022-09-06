@@ -2,6 +2,13 @@
     box-sizing: border-box;
 }
 
+:root {
+    --main-bg-color: #89CFFD;
+    --clr1: #F94892;
+    --clr2: #FBDF07;
+    --clr3: #FF7F3F;
+}
+
 html {
     font-family: OpenSans, sans-serif;
     font-size: 16px;
@@ -15,6 +22,7 @@ body {
         "Droid Sans", "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: var(--main-bg-color);
 }
 
 .main-app {
@@ -32,6 +40,12 @@ main {
 .main-app>footer {
     background-color: #111;
     color: white;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
 
 a.active {
@@ -61,12 +75,13 @@ a {
 }
 
 a:hover {
-    /* text-decoration: underline; */
+    text-decoration: underline;
 }
 
 button {
     font-family: inherit;
     cursor: pointer;
+    border: none;
 }
 
 button * {
@@ -76,4 +91,8 @@ button * {
 input {
     font-family: inherit;
     text-align: inherit;
+}
+
+i:hover {
+    cursor: pointer;
 }

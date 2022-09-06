@@ -64,10 +64,15 @@ function _createToys(num) {
 function _createToy() {
     return {
         "_id": utilService.makeId(),
-        "name": utilService.makeLorem(2),
-        "price": utilService.getRandomIntInclusive(10, 100),
+        "name": utilService.getRandomName(),
+        "price": '$' + utilService.getRandomIntInclusive(10, 100) + '.99',
         "labels": ["Doll", "Battery Powered", "Baby"],
         "createdAt": Date.now(),
-        "inStock": getRandomIntInclusive(0, 1) ? true : false
+        "inStock": utilService.getRandomIntInclusive(0, 1) ? true : false,
+        "reviews": [
+            { name: 'Lee Sharon', rate: 5, txt: 'Best toy ever', createdAt: Date.now() },
+            { name: 'Puki D.', rate: 3, txt: 'It breaks easily..', createdAt: Date.now() },
+            { name: 'Shula F.', rate: 4, txt: 'My kid loves to play with it', createdAt: Date.now() }
+        ]
     }
 }

@@ -1,0 +1,14 @@
+.reviews {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.reviews .toy-review {
+    background-color: var(--clr3);
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    width: 300px;
+    border-radius: 20px;
+    position: relative;
+}
