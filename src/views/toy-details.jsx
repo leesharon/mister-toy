@@ -1,31 +1,31 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { robotService } from '../services/robot.service'
+import { toyService } from '../services/toy.service'
 
-export const RobotDetails = (props) => {
+export const ToyDetails = (props) => {
 
-    const [robot, setRobot] = useState(null)
+    const [toy, setToy] = useState(null)
     const params = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
-        loadRobot()
+        loadToy()
     }, [params.id])
 
 
 
     // componentDidUpdate(prevProps, prevState) {
     //     if (prevparams.id !== params.id) {
-    //         loadRobot()
+    //         loadToy()
     //     }
     // }
 
 
-    const loadRobot = () => {
-        const robotId = params.id
-        robotService.getById(robotId).then(robot => {
-            setRobot(robot)
+    const loadToy = () => {
+        const toyId = params.id
+        toyService.getById(toyId).then(toy => {
+            setToy(toy)
         })
     }
 
@@ -35,22 +35,22 @@ export const RobotDetails = (props) => {
 
 
     console.log('render');
-    
-    if (!robot) return <div>Loading...</div>
+
+    if (!toy) return <div>Loading...</div>
     return (
-        <div className='robot-details'>
+        <div className='toy-details'>
             <section>
-                <h3>Model: {robot.model}</h3>
+                <h3>Model: {toy.model}</h3>
             </section>
             <section>
-                <h3>Type: {robot.type}</h3>
+                <h3>Type: {toy.type}</h3>
             </section>
             <section>
-                <h3>Battery Status: {robot.batteryStatus}</h3>
+                <h3>Battery Status: {toy.batteryStatus}</h3>
             </section>
-            <img src={`https://robohash.org/${robot._id}`} alt="" />
+            <img src={`https://robohash.org/${toy._id}`} alt="" />
             <button onClick={onBack}>Back</button>
-            <Link to='/robot/r1' >Next Robot</Link>
+            <Link to='/toy/r1' >Next Toy</Link>
         </div>
     )
 }

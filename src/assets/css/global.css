@@ -3,15 +3,15 @@
 @import "basics/layout";
 
 /* Pages */
-@import "pages/robot-app";
-@import "pages/robot-details";
-@import "pages/robot-edit";
-@import "pages/about";
+@import "views/toy-app";
+@import "views/toy-details";
+@import "views/toy-edit";
+@import "views/about";
 
 /* Components */
-@import "cmps/robot-list";
-@import "cmps/robot-preview";
-@import "cmps/robot-filter";
+@import "cmps/toy-list";
+@import "cmps/toy-preview";
+@import "cmps/toy-filter";
 @import "cmps/app-header";
 @import "cmps/nice-button";
 
@@ -39,6 +39,6 @@
     text-align: center;
 }
 
-.split-pane > div{
+.split-pane>div {
     transition: 0.5s;
 }

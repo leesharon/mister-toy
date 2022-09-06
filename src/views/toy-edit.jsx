@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react'
 import { useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useForm } from '../hooks/useForm'
-import { robotService } from '../services/robot.service'
+import { toyService } from '../services/toy.service'
 
-export const RobotEdit = (props) => {
+export const ToyEdit = (props) => {
 
     const params = useParams()
     const navigate = useNavigate()
 
-    // const [robot, setRobot] = useState({
+    // const [toy, setToy] = useState({
     //     model: '',
     //     type: ''
     // })xw
-    const [robot, handleChange, setRobot] = useForm({
+    const [toy, handleChange, setToy] = useForm({
         model: '',
         type: ''
     })
@@ -22,11 +22,11 @@ export const RobotEdit = (props) => {
 
     useEffect(() => {
         inputRef.current.focus()
-        const robotId = params.id
-        if (!robotId) return
-        robotService.getById(robotId)
-            .then(robot => {
-                setRobot(robot)
+        const toyId = params.id
+        if (!toyId) return
+        toyService.getById(toyId)
+            .then(toy => {
+                setToy(toy)
             })
             .catch(err => {
                 console.log('err:', err);
@@ -37,27 +37,27 @@ export const RobotEdit = (props) => {
     // const handleChange = ({ target }) => {
     //     const field = target.name
     //     const value = target.type === 'number' ? (+target.value || '') : target.value
-    //     setRobot(prevRobot => ({ ...prevRobot, [field]: value }))
+    //     setToy(prevToy => ({ ...prevToy, [field]: value }))
     // }
-    
 
-    const onSaveRobot = (ev) => {
+
+    const onSaveToy = (ev) => {
         ev.preventDefault()
-        robotService.save({ ...robot }).then(() => {
+        toyService.save({ ...toy }).then(() => {
             navigate('/')
         })
     }
 
 
     return (
-        <section className='robot-edit'>
-            <h1>{robot._id ? 'Edit' : 'Add'} Robot</h1>
-            <form onSubmit={onSaveRobot}>
+        <section className='toy-edit'>
+            <h1>{toy._id ? 'Edit' : 'Add'} Toy</h1>
+            <form onSubmit={onSaveToy}>
                 <label htmlFor="model">Model</label>
-                <input ref={inputRef} value={robot.model} onChange={handleChange} type="text" name="model" id="model" />
+                <input ref={inputRef} value={toy.model} onChange={handleChange} type="text" name="model" id="model" />
 
                 <label htmlFor="type">Type</label>
-                <select value={robot.type} onChange={handleChange} name="type" id="type">
+                <select value={toy.type} onChange={handleChange} name="type" id="type">
                     <option disabled value="">Choose a type</option>
                     <option value="Cooking">Cooking</option>
                     <option value="Cleaning">Cleaning</option>

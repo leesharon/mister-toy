@@ -1,10 +1,10 @@
-import { RobotPreview } from './robot-preview'
+import { ToyPreview } from './toy-preview'
 
-export function RobotList({ robots, onRemoveRobot, history }) {
-    
+export function ToyList({ toys, onRemoveToy, history }) {
+
     return (
-        <div className='robot-list simple-cards-grid'>
-            {robots.map(robot => <RobotPreview key={robot._id} robot={robot} onRemoveRobot={onRemoveRobot}  />)}
+        <div className='toy-list simple-cards-grid'>
+            {toys.map(toy => <ToyPreview key={toy._id} toy={toy} onRemoveToy={onRemoveToy} />)}
         </div>
     )
 }

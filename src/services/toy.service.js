@@ -1,55 +1,73 @@
 import { storageService } from './async-storage.service.js'
+import { utilService } from './util.service.js'
 
-export const robotService = {
+export const toyService = {
     query,
     save,
     remove,
     getById,
 }
 
-const STORAGE_KEY = 'robots'
-const gDefaultRobots = [
-    { _id: 'r2', model: 'Salad-O-Matic', batteryStatus: 80, type: 'Cooking' },
-    { _id: 'r3', model: 'Dusty', batteryStatus: 100, type: 'Cleaning' },
-    { _id: 'r1', model: 'Dominique Sote', batteryStatus: 100, type: 'Pleasure' },
-    { _id: 'r4', model: 'DevTron', batteryStatus: 40, type: 'Office' }
-]
+const STORAGE_KEY = 'toyDB'
+const gDefaultToys = _createToys(5)
 
 function query(filterBy) {
-    return storageService.query(STORAGE_KEY).then(robots => {
+    return storageService.query(STORAGE_KEY)
+        .then(toys => {
+            if (!toys || !toys.length) {
+                storageService.postMany(STORAGE_KEY, gDefaultToys)
+                toys = gDefaultToys
+            }
 
-        if (!robots || !robots.length) {
-            storageService.postMany(STORAGE_KEY, gDefaultRobots)
-            robots = gDefaultRobots
-        }
-        if (filterBy) {
-            var { type, maxBatteryStatus, minBatteryStatus, model } = filterBy
-            maxBatteryStatus = maxBatteryStatus || Infinity
-            minBatteryStatus = minBatteryStatus || 0
-            robots = robots.filter(robot => robot.type.toLowerCase().includes(type.toLowerCase()) && robot.model.toLowerCase().includes(model.toLowerCase())
-                && (robot.batteryStatus < maxBatteryStatus)
-                && robot.batteryStatus > minBatteryStatus)
-        }
-
-        return robots
-    })
+            if (filterBy) {
+                var { name, maxPrice, minPrice, label, inStock } = filterBy
+                maxPrice = maxPrice || Infinity
+                minPrice = minPrice || 0
+                toys = toys.filter(toy =>
+                    toy.name.toLowerCase().includes(name.toLowerCase())
+                    && toy.labels.filter(currLabel => currLabel.includes(label))
+                    && (toy.price < maxPrice)
+                    && (toy.price > minPrice)
+                    && (inStock ? (toy.inStock) : true)
+                )
+            }
+            return toys
+        })
 }
 
-function getById(robotId) {
-    return storageService.get(STORAGE_KEY, robotId)
+function getById(toyId) {
+    return storageService.get(STORAGE_KEY, toyId)
 }
 
-function remove(robotId) {
-    return storageService.remove(STORAGE_KEY, robotId)
+function remove(toyId) {
+    return storageService.remove(STORAGE_KEY, toyId)
 }
 
-function save(robot) {
-    if (robot._id) {
-        return storageService.put(STORAGE_KEY, robot)
+function save(toy) {
+    if (toy._id) {
+        return storageService.put(STORAGE_KEY, toy)
     } else {
-        robot.batteryStatus = 100
-        return storageService.post(STORAGE_KEY, robot)
+        toy._id = utilService.makeId()
+        toy.createdAt = Date.now()
+        return storageService.post(STORAGE_KEY, toy)
     }
 }
 
+function _createToys(num) {
+    const toys = []
+    for (let i = 0; i < num; i++) {
+        toys.push(_createToy())
+    }
+    return toys
+}
 
+function _createToy() {
+    return {
+        "_id": utilService.makeId(),
+        "name": utilService.makeLorem(2),
+        "price": utilService.getRandomIntInclusive(10, 100),
+        "labels": ["Doll", "Battery Powered", "Baby"],
+        "createdAt": Date.now(),
+        "inStock": getRandomIntInclusive(0, 1) ? true : false
+    }
+}

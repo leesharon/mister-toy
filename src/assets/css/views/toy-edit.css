@@ -1,23 +1,23 @@
 
-.robot-edit {
+.toy-edit {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.robot-edit form {
+.toy-edit form {
     display: flex;
     flex-direction: column;
 
 
 }
 
-.robot-edit form label {
+.toy-edit form label {
     margin-top: 20px;
 }
 
-.robot-edit form button {
+.toy-edit form button {
     width: 50%;
     margin-top: 40px;
     align-self: center;

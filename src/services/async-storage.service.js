@@ -1,4 +1,3 @@
-
 export const storageService = {
     query,
     get,
@@ -7,7 +6,6 @@ export const storageService = {
     remove,
     postMany
 }
-
 
 function query(entityType, delay = 0) {
 

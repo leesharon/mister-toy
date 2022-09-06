@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom'
 
-export function RobotPreview({ robot, onRemoveRobot }) {
+export function ToyPreview({ toy, onRemoveToy }) {
 
-    const robotStyle = { backgroundImage: `url(https://robohash.org/${robot._id})` }
+    const toyStyle = { backgroundImage: `url(https://robohash.org/${toy._id})` }
     return (
-        <div style={robotStyle} className='robot-preview'>
-            <Link to={`/robot/${robot._id}`} className='info'>
-                <h2>{robot.model}</h2>
-                <h4>{robot.type}</h4>
+        <div style={toyStyle} className='toy-preview'>
+            <Link to={`/toy/${toy._id}`} className='info'>
+                <h2>{toy.model}</h2>
+                <h4>{toy.type}</h4>
             </Link>
             <section className='actions'>
-                <button onClick={() => onRemoveRobot(robot._id)}>Delete</button>
-                <Link to={`/robot/edit/${robot._id}`} >Edit</Link>
+                <button onClick={() => onRemoveToy(toy._id)}>Delete</button>
+                <Link to={`/toy/edit/${toy._id}`} >Edit</Link>
             </section>
         </div>
     )

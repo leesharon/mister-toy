@@ -1,11 +1,11 @@
-import {  useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from '../hooks/useForm'
 import { useFormRegister } from '../hooks/useFormRegister'
 import { useFormRegisterBase } from '../hooks/useFormRegisterBase'
 
-export const RobotFilter = (props) => {
+export const ToyFilter = (props) => {
 
-   const [register] = useFormRegister({
+    const [register] = useFormRegister({
         model: '',
         type: '',
         minBatteryStatus: '',
@@ -16,9 +16,9 @@ export const RobotFilter = (props) => {
 
     // const { model, type, minBatteryStatus, maxBatteryStatus } = filterBy
 
-    const classObj = {className: 'robot-filter'}
+    const classObj = { className: 'toy-filter' }
     return (
-        // <form className='robot-filter'>
+        // <form className='toy-filter'>
         <form {...classObj} >
             <section>
                 <label htmlFor="model">Model</label>

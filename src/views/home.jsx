@@ -1,11 +1,9 @@
-import { Component } from 'react'
 
-export class Home extends Component {
-    render() {
-        return (
-            <section className='home'>
-                Home
-            </section>
-        )
-    }
+export const Home = () => {
+
+    return (
+        <section className='home'>
+            Home
+        </section>
+    )
 }

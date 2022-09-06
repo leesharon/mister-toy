@@ -1,42 +1,42 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { RobotFilter } from '../cmps/robot-filter'
-import { RobotList } from '../cmps/robot-list'
-import { loadRobots, removeRobot, setFilterBy } from '../store/actions/robot.action'
+import { ToyFilter } from '../cmps/toy-filter'
+import { ToyList } from '../cmps/toy-list'
+import { loadToys, removeToy, setFilterBy } from '../store/actions/toy.action'
 import { spendBalance } from '../store/actions/user.action'
 
-export const RobotApp = (props) => {
-    
-    const { robots, isLoading } = useSelector(state => state.robotModule)
+export const ToyApp = (props) => {
+
+    const { toys, isLoading } = useSelector(state => state.toyModule)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(loadRobots())
+        dispatch(loadToys())
     }, [])
 
     // componentDidMount() {
-    //     props.loadRobots()
+    //     props.loadToys()
     // }
 
 
-    const onRemoveRobot = (robotId) => {
-        dispatch(removeRobot(robotId))
+    const onRemoveToy = (toyId) => {
+        dispatch(removeToy(toyId))
     }
 
     const onChangeFilter = (filterBy) => {
         dispatch(setFilterBy(filterBy))
-        dispatch(loadRobots())
+        dispatch(loadToys())
     }
 
 
-    // const { robots } = props
-    if (!robots) return <div>Loading...</div>
+    // const { toys } = props
+    if (!toys) return <div>Loading...</div>
     return (
-        <div className='robot-app'>
-            <RobotFilter onChangeFilter={onChangeFilter} />
-            <Link to="/robot/edit">Add Robot</Link>
-            <RobotList history={props.history} onRemoveRobot={onRemoveRobot} robots={robots} />
+        <div className='toy-app'>
+            <ToyFilter onChangeFilter={onChangeFilter} />
+            <Link to="/toy/edit">Add Toy</Link>
+            <ToyList history={props.history} onRemoveToy={onRemoveToy} toys={toys} />
         </div>
     )
 }
@@ -45,15 +45,15 @@ export const RobotApp = (props) => {
 // const mapStateToProps = state => {
 
 //     return {
-//         robots: state.robotModule.robots
+//         toys: state.toyModule.toys
 //     }
 // }
 
 // const mapDispatchToProps = {
-//     loadRobots,
-//     removeRobot,
+//     loadToys,
+//     removeToy,
 //     setFilterBy,
 //     spendBalance
 // }
 
-// export const RobotApp = connect(mapStateToProps, mapDispatchToProps)(_RobotApp)
+// export const ToyApp = connect(mapStateToProps, mapDispatchToProps)(_ToyApp)
