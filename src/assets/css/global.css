@@ -1,22 +1,22 @@
 /* Basics */
-@import "basics/normalize";
-@import "basics/base";
-@import "basics/layout";
+@import "basics/normalize.css";
+@import "basics/base.css";
+@import "basics/layout.css";
 
 /* Pages */
-@import "views/toy-app";
-@import "views/toy-details";
-@import "views/toy-edit";
-@import "views/about";
+@import "views/toy-app.css";
+@import "views/toy-details.css";
+@import "views/toy-edit.css";
+@import "views/about.css";
 
 /* Components */
-@import "cmps/toy-list";
-@import "cmps/toy-preview";
-@import "views/toy-details";
-@import "cmps/toy-review";
-@import "cmps/toy-filter";
-@import "cmps/app-header";
-@import "cmps/nice-button";
+@import "cmps/toy-list.css";
+@import "cmps/toy-preview.css";
+@import "views/toy-details.css";
+@import "cmps/toy-review.css";
+@import "cmps/toy-filter.css";
+@import "cmps/app-header.css";
+@import "cmps/nice-button.css";
 
 .counter,
 .timer {

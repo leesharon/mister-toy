@@ -32,6 +32,6 @@ export function removeToy(toyId) {
 
 export function setFilterBy(filterBy) {
     return (dispatch) => {
-        dispatch({ type: 'SET_FILTER_BY', filterBy })
+        return Promise.resolve(dispatch({ type: 'SET_FILTER_BY', filterBy }))
     }
 }

@@ -1,4 +1,5 @@
 import { storageService } from './async-storage.service.js'
+import { httpService } from './http.service.js'
 import { utilService } from './util.service.js'
 
 export const toyService = {
@@ -9,48 +10,27 @@ export const toyService = {
 }
 
 const STORAGE_KEY = 'toyDB'
+const BASE_URL = `toy/`
 const gDefaultToys = _createToys(5)
 
-function query(filterBy) {
-    return storageService.query(STORAGE_KEY)
-        .then(toys => {
-            if (!toys || !toys.length) {
-                storageService.postMany(STORAGE_KEY, gDefaultToys)
-                toys = gDefaultToys
-            }
-
-            if (filterBy) {
-                var { name, maxPrice, minPrice, label, inStock } = filterBy
-                maxPrice = maxPrice || Infinity
-                minPrice = minPrice || 0
-                toys = toys.filter(toy =>
-                    toy.name.toLowerCase().includes(name.toLowerCase())
-                    && toy.labels.filter(currLabel => currLabel.includes(label))
-                    && (toy.price < maxPrice)
-                    && (toy.price > minPrice)
-                    && (inStock ? (toy.inStock) : true)
-                )
-            }
-            return toys
-        })
+function query(filterBy = { txt: '', inStock: '' }) {
+    return httpService.get(BASE_URL, filterBy)
+        .then(toys => toys)
 }
 
 function getById(toyId) {
-    return storageService.get(STORAGE_KEY, toyId)
+    return httpService.get(BASE_URL + toyId)
 }
 
 function remove(toyId) {
-    return storageService.remove(STORAGE_KEY, toyId)
+    return httpService.delete(BASE_URL + toyId)
 }
 
 function save(toy) {
-    console.log('save ~ toy', toy)
     if (toy._id) {
-        return storageService.put(STORAGE_KEY, toy)
+        return httpService.put(BASE_URL + toy._id, toy)
     } else {
-        toy._id = utilService.makeId()
-        toy.createdAt = Date.now()
-        return storageService.post(STORAGE_KEY, toy)
+        return httpService.post(BASE_URL, toy)
     }
 }
 

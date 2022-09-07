@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { ToyPreview } from './toy-preview'
 
 export const ToyList = ({ toys, onRemoveToy }) => {

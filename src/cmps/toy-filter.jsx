@@ -1,37 +1,38 @@
-import { useEffect, useState } from 'react'
-import { useForm } from '../hooks/useForm'
 import { useFormRegister } from '../hooks/useFormRegister'
-import { useFormRegisterBase } from '../hooks/useFormRegisterBase'
+import React from 'react'
+import { Formik } from 'formik'
+import { NativeSelect, Select } from '@mui/material'
 
-export const ToyFilter = ({ onChangeFilter }) => {
+export const ToyFilter = (props) => {
 
-    const [toy, handleChange, setToy] = useForm({
-        name: '',
-        inStock: true,
-        label: '',
-        sortBy: ''
-    })
-
-    const inStockValue = toy.inStock ? 'true' : 'false'
+    const [register, handleChange] = useFormRegister(
+        {
+            txt: '',
+            minPrice: 0,
+            inStock: ''
+        },
+        props.onChangeFilter
+    )
 
     return (
-        <section className='toy-edit'>
-            <form onSubmit={onChangeFilter}>
-                <label htmlFor="name">Name</label>
-                <input value={toy.name} onChange={handleChange} type="text" name="name" id="name" />
-
-                <label htmlFor="price">Price</label>
-                <input value={toy.price} onChange={handleChange} type="number" name="price" id="price" />
-
-                <label htmlFor="inStock">In Stock?</label>
-                <select value={inStockValue} onChange={handleChange} name="inStock" id="inStock">
-                    <option disabled value="">Choose option</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
-
-                <button>Search</button>
+        <React.Fragment>
+            <form className="toy-filter">
+                <section>
+                    <label htmlFor="txt">Name</label>
+                    <input {...register('txt', 'text')} />
+                </section>
+                <section>
+                    <label htmlFor="minPrice">Min Price</label>
+                    <input {...register('minPrice', 'number')} />
+                </section>
+                <NativeSelect
+                    {...register('inStock')}
+                >
+                    <option value="">All</option>
+                    <option value="in-stock">In Stock</option>
+                    <option value="out-of-stock">Out of Stock</option>
+                </NativeSelect>
             </form>
-        </section>
+        </React.Fragment >
     )
-}   
+}

@@ -1,18 +1,14 @@
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ToyFilter } from '../cmps/toy-filter'
 import { ToyList } from '../cmps/toy-list'
 import { loadToys, removeToy, setFilterBy } from '../store/actions/toy.action'
+import React from 'react'
 
 export const ToyApp = () => {
 
     const { toys, isLoading } = useSelector(state => state.toyModule)
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(loadToys())
-    }, [])
 
     const onRemoveToy = (toyId) => {
         dispatch(removeToy(toyId))
@@ -20,15 +16,24 @@ export const ToyApp = () => {
 
     const onChangeFilter = (filterBy) => {
         dispatch(setFilterBy(filterBy))
-        dispatch(loadToys())
+            .then(() => {
+                dispatch(loadToys())
+            })
     }
 
-    if (!toys || isLoading) return <div>Loading...</div>
+    const Loader = () => {
+        return (
+            <div>Loading...</div>
+        )
+    }
+
+    // if (!toys || isLoading) return 
     return (
         <div className='toy-app'>
             <ToyFilter onChangeFilter={onChangeFilter} />
             <Link to="/toy/edit">Add Toy</Link>
-            <ToyList onRemoveToy={onRemoveToy} toys={toys} />
+            {toys && !isLoading && <ToyList onRemoveToy={onRemoveToy} toys={toys} />}
+            {isLoading && <Loader />}
         </div>
     )
 }

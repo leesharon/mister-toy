@@ -1,8 +1,9 @@
-import { useSelector } from "react-redux"
+import React from 'react'
+// import { useSelector } from "react-redux"
 import { NavLink } from "react-router-dom"
 
 export const AppHeader = () => {
-    const loggedInUser = useSelector(state => state.userModule.loggedInUser)
+    // const loggedInUser = useSelector(state => state.userModule.loggedInUser)
 
     return (
         <header className='app-header'>
@@ -15,6 +16,7 @@ export const AppHeader = () => {
                 <nav>
                     <NavLink to='/home' >Home</NavLink>
                     <NavLink to='/' >Toys</NavLink>
+                    <NavLink to='/dashboard'>Dashboard</NavLink>
                     <NavLink to='/about'>About</NavLink>
                 </nav>
             </section>

@@ -6,14 +6,27 @@ import { ToyApp } from "./views/toy-app"
 import { About } from "./views/about"
 import { ToyDetails } from "./views/toy-details"
 import { ToyEdit } from "./views/toy-edit"
+import { Dashboard } from "./views/dashboard"
+import { useDispatch } from "react-redux"
+import { useEffect } from "react"
+import { loadToys } from "./store/actions/toy.action"
+import React from 'react'
 
 function App() {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(loadToys())
+  }, [])
+
   return (
     <div className="main-app">
       <AppHeader />
       <main className="container">
         <Routes>
           <Route path='home' element={<Home />} />
+          <Route path='dashboard' element={<Dashboard />} />
           <Route path='' element={<ToyApp />} />
           <Route path='about' element={<About />} />
           <Route path='toy/:id' element={<ToyDetails />} />

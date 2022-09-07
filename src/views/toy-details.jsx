@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ToyReview } from '../cmps/toy-review'
 import { toyService } from '../services/toy.service'
+import React from 'react'
 
 export const ToyDetails = (props) => {
 
