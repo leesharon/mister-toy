@@ -4,6 +4,8 @@ import { Provider } from 'react-redux'
 import { HashRouter as Router } from 'react-router-dom'
 import { store } from './store/store'
 import App from './root-cmp'
+import './assets/scss/global.scss'
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(

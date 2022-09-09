@@ -31,7 +31,7 @@ export const ToyApp = () => {
     return (
         <div className='toy-app'>
             <ToyFilter onChangeFilter={onChangeFilter} />
-            <Link to="/toy/edit">Add Toy</Link>
+            <Link className="nice-button" to="/toy/edit">Add Toy</Link>
             {toys && !isLoading && <ToyList onRemoveToy={onRemoveToy} toys={toys} />}
             {isLoading && <Loader />}
         </div>

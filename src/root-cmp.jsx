@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import { AppHeader } from "./cmps/app-header"
 import { Home } from "./views/home"
-import './assets/css/global.css'
+// import './assets/css/global.css'
 import { ToyApp } from "./views/toy-app"
 import { About } from "./views/about"
 import { ToyDetails } from "./views/toy-details"
@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 import { loadToys } from "./store/actions/toy.action"
 import React from 'react'
+import { Signup } from "./cmps/signup"
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
   }, [])
 
   return (
-    <div className="main-app">
+    <div className=" main-layout">
       <AppHeader />
       <main className="container">
         <Routes>
@@ -32,6 +33,7 @@ function App() {
           <Route path='toy/:id' element={<ToyDetails />} />
           <Route path='toy/edit/:id' element={<ToyEdit />} />
           <Route path='toy/edit' element={<ToyEdit />} />
+          <Route path='user/signup' element={<Signup />} />
         </Routes>
       </main>
       <footer className="main-footer">

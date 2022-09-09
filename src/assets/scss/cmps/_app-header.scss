@@ -1,0 +1,38 @@
+.app-header {
+  background-color: var(--clr3);
+  color: whitesmoke;
+  font-size: 1.2em;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  > section {
+    display: flex;
+    align-items: center;
+  }
+  h1.logo {
+    flex-grow: 1;
+    font-weight: 600;
+  }
+  .user {
+    flex-grow: 1;
+  }
+  .back {
+    flex-grow: 1;
+  }
+  nav {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    a {
+      height: 100px;
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      &:not(last-child) {
+        box-shadow: inset 5px;
+      }
+    }
+  }
+}

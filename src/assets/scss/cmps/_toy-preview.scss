@@ -1,0 +1,48 @@
+.toy-preview {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--clr2);
+  text-align: center;
+  box-shadow: 3px 4px 15px #00000026;
+  border-radius: 5px;
+  background-repeat: no-repeat;
+  background-size: 37%;
+  background-position: 50% calc(100% - 50px);
+  overflow-y: hidden;
+
+  .info {
+    padding: 10px;
+    flex-grow: 1;
+    cursor: pointer;
+  }
+
+  .actions {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: var(--clr1);
+    > * {
+      font-size: 1rem;
+      padding: 0;
+      background: none;
+      border: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .red {
+    color: red;
+  }
+  .green {
+    color: green;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .toy-preview {
+    background-size: 80px;
+  }
+}

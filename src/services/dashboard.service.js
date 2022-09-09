@@ -14,15 +14,7 @@ function getToysInstockByLabel(toys) {
         }
         return acc
     }, {})
-
-    const labels = []
-    const data = []
-    let count = 0
-    for (const key in toysInstockByLabel) {
-        labels.push(key)
-        if (!data[count]) data[count] = toysInstockByLabel[key]
-        else data[count] += toysInstockByLabel[key]
-        count++
-    }
+    const labels = Object.keys(toysInstockByLabel)
+    const data = Object.values(toysInstockByLabel)
     return { labels, data }
 }

@@ -1,0 +1,52 @@
+// SETUP
+@import 'setup/normalize';
+// @import 'setup/typography';
+@import 'setup/variables';
+@import 'setup/mixins';
+@import 'setup/functions';
+
+/* Basics */
+@import 'basics/helpers';
+@import 'basics/base';
+@import 'basics/layout';
+
+/* Pages */
+@import 'views/toy-app';
+@import 'views/toy-details';
+@import 'views/toy-edit';
+@import 'views/about';
+
+/* Components */
+@import 'cmps/toy-list';
+@import 'cmps/toy-preview';
+@import 'views/toy-details';
+@import 'cmps/toy-review';
+@import 'cmps/toy-filter';
+@import 'cmps/app-header';
+@import 'cmps/nice-button';
+@import 'cmps/signup';
+
+.counter,
+.timer {
+  margin-top: 20%;
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+}
+
+.counter button:nth-of-type(2) {
+  font-size: 2em;
+  display: block;
+  border: none;
+  background-color: inherit;
+}
+
+.fancy-box {
+  background-color: gold;
+  padding: 10px;
+  text-align: center;
+}
+
+.split-pane > div {
+  transition: 0.5s;
+}

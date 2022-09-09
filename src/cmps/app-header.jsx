@@ -6,7 +6,7 @@ export const AppHeader = () => {
     // const loggedInUser = useSelector(state => state.userModule.loggedInUser)
 
     return (
-        <header className='app-header'>
+        <header className='app-header full'>
             <section className='container'>
                 <h1 className="main-logo">Mister Toy</h1>
                 {/* <section className="user">
@@ -18,6 +18,7 @@ export const AppHeader = () => {
                     <NavLink to='/' >Toys</NavLink>
                     <NavLink to='/dashboard'>Dashboard</NavLink>
                     <NavLink to='/about'>About</NavLink>
+                    <NavLink to='/user/signup'>Sign Up</NavLink>
                 </nav>
             </section>
         </header>
